@@ -1,0 +1,34 @@
+[
+  {
+    "id": "SKATE-0001",
+    "name": "Neon Cyber Punk Pro-X",
+    "price": 249.99,
+    "category": "Street",
+    "stock": 42,
+    "image": "/skate1.jpg.png"
+  },
+  {
+    "id": "SKATE-0002",
+    "name": "Midnight Stealth Carbon",
+    "price": 319.50,
+    "category": "Cruiser",
+    "stock": 15,
+    "image": "/skate2.jpg.png"
+  },
+  {
+    "id": "SKATE-0003",
+    "name": "Tokyo Drift Maple Edition",
+    "price": 189.00,
+    "category": "Park",
+    "stock": 8,
+    "image": "/skate3.jpg.png"
+  },
+  {
+    "id": "SKATE-0004",
+    "name": "Hyper Fusion Limited",
+    "price": 420.00,
+    "category": "Custom",
+    "stock": 5,
+    "image": "/skate4.jpg.png"
+  }
+]
