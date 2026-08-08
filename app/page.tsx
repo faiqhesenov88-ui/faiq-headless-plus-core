@@ -28,24 +28,29 @@ export default function HomePage() {
 
   const displayedProducts = enterpriseProducts.slice(0, 24);
 
- const handleAddToCart = async (product: Product) => {
-  const randomDelay = Math.random() * 3000;
-  await new Promise((resolve) => setTimeout(resolve, randomDelay));
-
-  setCart((prevCart) => {
-    const existingItem = prevCart.find((item) => item.product.id === product.id);
+ const handleAddToCart = (product: Product) => {
+  setCart((currentCart) => {
+    const existingItem = currentCart.find((item) => item.product.id === product.id);
     if (existingItem) {
-      return prevCart.map((item) =>
+      return currentCart.map((item) =>
         item.product.id === product.id
           ? { ...item, quantity: item.quantity + 1 }
           : item
       );
     }
-    return [...prevCart, { product, quantity: 1 }];
+    return [...currentCart, { product, quantity: 1 }];
   });
-  setIsCartOpen(true);
-};
 
+  setIsCartOpen(true);
+
+  setTimeout(async () => {
+    try {
+      // API call placeholder
+    } catch (error) {
+      console.error(error);
+    }
+  }, Math.random() * 3000);
+};
   const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
   const totalPrice = cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
 
