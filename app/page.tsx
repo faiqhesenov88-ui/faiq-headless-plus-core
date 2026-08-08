@@ -13,6 +13,15 @@ interface Product {
 }
 
 export default function HomePage() {
+  const [realStock, setRealStock] = useState(0);
+
+const handleFlashSalePurchase = (product: Product) => {
+  if (realStock <= 0) {
+    alert("CRITICAL SYSTEM ERROR 503: Stock Misalignment! Cache is stale. Product out of stock in DB.");
+    console.error("Fəlakət: Müştəri köhnə keş datasına aldanaraq bitmiş məhsulu almağa çalışdı!");
+    return;
+  }
+};
   const [cart, setCart] = useState<{ product: Product; quantity: number }[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -127,7 +136,7 @@ export default function HomePage() {
                   </span>
                 </div>
                 <button 
-                  onClick={() => handleAddToCart(product)}
+                  onClick={() => handleFlashSalePurchase(product)}
                   className="mt-5 w-full bg-white hover:bg-zinc-200 text-black font-semibold text-xs py-2.5 rounded transition-all active:scale-[0.98]"
                 >
                   Add to Cart
