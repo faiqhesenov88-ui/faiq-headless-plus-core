@@ -13,6 +13,11 @@ interface Product {
 }
 
 export default function HomePage() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   const [cart, setCart] = useState<any[]>(() => {
     if (typeof window !== "undefined") {
       const savedCart = localStorage.getItem("faig-premium-cart");
@@ -65,7 +70,9 @@ export default function HomePage() {
 
   const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
   const totalPrice = cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
-
+if (!isMounted) {
+    return <div className="min-h-screen bg-black" />;
+  }
   return (
     <div className="min-h-screen bg-black text-gray-100 font-sans antialiased relative overflow-x-hidden">
       <header className="border-b border-zinc-800 bg-zinc-950/80 backdrop-blur sticky top-0 z-40 px-6 py-4">
