@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import mockBaseProducts from './mock-data.json'; 
 
 interface Product {
@@ -13,8 +13,20 @@ interface Product {
 }
 
 export default function HomePage() {
-  const [cart, setCart] = useState<{ product: Product; quantity: number }[]>([]);
+  const [cart, setCart] = useState<any[]>(() => {
+    if (typeof window !== "undefined") {
+      const savedCart = localStorage.getItem("faig-premium-cart");
+      return savedCart ? JSON.parse(savedCart) : [];
+    }
+    return [];
+  });
   const [isCartOpen, setIsCartOpen] = useState(false);
+   
+  useEffect(() => {
+    if (cart.length > 0) {
+      localStorage.setItem("faig-premium-cart", JSON.stringify(cart));
+    }
+  }, [cart]);
 
   const enterpriseProducts: Product[] = Array.from({ length: 10000 }).map((_, index) => {
     const base = mockBaseProducts[index % mockBaseProducts.length];
